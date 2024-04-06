@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RequestMapping("/customer")
 public class CustomerController {
 
@@ -31,11 +32,11 @@ public class CustomerController {
 
     }
 
-    @PutMapping("/update")
-    public ResponseEntity updateCustomer(@RequestBody CustomerRequestDto customerRequestDto) throws Exception{
+    @PutMapping("/update/{id}")
+    public ResponseEntity updateCustomer(@RequestBody CustomerRequestDto customerRequestDto,Integer id) throws Exception{
         try{
 
-            String Result = customerService.update(customerRequestDto);
+            String Result = customerService.update(customerRequestDto ,id);
             return new ResponseEntity(Result,HttpStatus.ACCEPTED);
         }
         catch (Exception e){

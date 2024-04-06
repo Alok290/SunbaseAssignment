@@ -40,8 +40,36 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public String update(CustomerRequestDto customerRequestDto) throws Exception {
-        return null;
+    public String update(CustomerRequestDto customerRequestDto , Integer id) throws Exception {
+
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+
+        if(!optionalCustomer.isPresent()){
+            throw new customerNotPresent("this id is not valid");
+        }
+        Customer customer = optionalCustomer.get();
+
+
+        if(customerRequestDto.getFirst_name()!=null){
+            customer.setFirst_name(customerRequestDto.getFirst_name());
+        }
+
+        if(customerRequestDto.getLast_name()!=null){
+            customer.setLast_name(customerRequestDto.getLast_name());
+        }
+
+        if(customerRequestDto.getEmail()!=null){
+            customer.setEmail(customerRequestDto.getEmail());
+        }
+
+        if(customerRequestDto.getAddress()!=null){
+            customer.setAddress(customerRequestDto.getAddress());
+        }
+
+
+        return "your data is updated";
+
+
     }
 
     @Override

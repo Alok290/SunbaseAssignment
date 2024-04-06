@@ -8,7 +8,7 @@ import java.util.List;
 public interface CustomerService {
     String create(CustomerRequestDto customerRequestDto) throws Exception;
 
-    String update(CustomerRequestDto customerRequestDto)throws Exception;
+    String update(CustomerRequestDto customerRequestDto,Integer id)throws Exception;
 
     List<Customer> getCustomerList() throws Exception;
 
